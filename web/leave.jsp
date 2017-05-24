@@ -7,8 +7,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
   <head>
     <base href="<%=basePath%>">
     
@@ -41,19 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    System.out.println(isAdmin);
 	    System.out.println(score);
 	     %>
-        <p>欢迎<%=myusername %>，您当前的积分为：<%=score %></p>
-        <a href="post.jsp">发帖</a>
+        <p>欢迎<%=myusername %>，您当前的积分为：<%=score %> <a href="post.jsp">发帖</a> </p>
+          <div class="feed-list">
 
-    
-        <table>
-          <tr>
-            <td>帖子编号</td>
-            <td>标题</td>
-            <td>内容</td>
-            <td>发帖人</td>
-            <td>回复数</td>  
-            <td>发帖时间</td> 
-          </tr>
     <%
 	    
 	    Users us=new Users();
@@ -70,21 +60,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    Date time=(Date)us.getTime();
         DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     %>
-  <tr>
-            <td><%=leaveId %></td>
-            <td><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %></a></td>
-            <td><%=leaveBody %></td>
-            <td><%=username %></td>
-            <td><%=repNum %></td>
-            <td><%=dateFormat.format(time) %></td>
+
+              <div class="feed-item">
+                  <hr>
+                  <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %></a></h2>
+                  <p class="feed-author"><%=username %></p>
+                  <div class="feed-content">
+                      <%=leaveBody %>
+                      <p class="feed-time">回复数：<%=repNum %>  发表时间：<%=dateFormat.format(time) %></p>
+                  </div>
+              </div>
+
             <%if(isAdmin==1) {
             out.print("<td><a href='delete?leaveId="+leaveId+"'>删除</a></td>");
             } %>
-          </tr>
    <% }%>
-    
-    
-     </table>
+          </div>
       </div>    
     </div>
   </body>

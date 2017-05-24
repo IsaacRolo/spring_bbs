@@ -35,8 +35,28 @@
     white-space: normal;
 }
 
-.leave-main-body h1 {
+.leave-main-body h1{
 	text-align: left;
+
+}
+
+.leave-main-body h2{
+    text-align: left;
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+
+}
+
+.leave-main-body p{
+    margin: 0;
+}
+
+.leave-main-body a{
+    text-decoration: none;
+
+    -webkit-tap-highlight-color: rgba(225,225,225,.5);
 }
 
 .leave-main-body input {
@@ -69,4 +89,8 @@
 
 .leave-main-body table {
 	text-align: center;
+}
+
+.feed-author {
+    font-weight: 700;
 }
