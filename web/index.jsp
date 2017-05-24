@@ -3,8 +3,8 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
     <base href="<%=basePath%>">
 
@@ -30,7 +30,7 @@
             <input type="password" name="password" placeholder="密码"><br/>
             <button type="submit" class="login-button">登录</button>
         </form>
-        如果您还没有账号，请<a href="reg.jsp">注册</a>
+        <p>如果您还没有账号，请<a href="reg.jsp">注册</a></p>
     </div>
 </div>
 </body>

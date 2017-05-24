@@ -1,5 +1,11 @@
+html{
+    height:100%;
+}
+
 body {
     color: #555;
+
+    height: 100%;
 
     background: #f7fafc;    
 
@@ -8,6 +14,8 @@ body {
     line-height: 1.7;
 
     font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 h1,h2,h3 {
