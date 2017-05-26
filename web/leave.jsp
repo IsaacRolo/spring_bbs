@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     %>
         <p>欢迎 <em><%if (isAdmin==1) {
             out.print("管理员");
-        } else out.print("用户");%></em>  <%=myusername %>  ，您当前的积分为：<em><%=score %></em> <a href="post.jsp">发帖</a> </p>
+        } else out.print("用户");%></em>  <%=myusername %>  ，您当前的积分为：<em><%=score %></em> <a href="post.jsp">发帖</a><a href="index.jsp">  退出登录</a> </p>
           <div class="feed-list">
 
     <%
