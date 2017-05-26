@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
 		HttpSession session = req.getSession();
 		if (username == null || username.equals("") || password == null
 				|| password.equals("")) {
-			resp.sendRedirect("login.jsp");
+			resp.sendRedirect("index.jsp");
 			return;
 		}
 
@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("username", username);
 		} else {
 
-			resp.sendRedirect("login.jsp");
+			resp.sendRedirect("index.jsp");
 			// HttpSession session1=req.getSession();
 			// session1.setAttribute("username",username);
 		}
