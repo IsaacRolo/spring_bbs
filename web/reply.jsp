@@ -1,10 +1,10 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.text.DateFormat"%>
-<%@page import="java.sql.Timestamp"%>
-<%@ page language="java" import="java.util.*,util.*,service.*" pageEncoding="UTF-8"%>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.text.DateFormat" %>
+<%@page import="java.sql.Timestamp" %>
+<%@ page language="java" import="java.util.*,util.*,service.*" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <!DOCTYPE HTML>
 <html lang="zh-CN">
@@ -24,26 +24,27 @@
 <body>
 <%
 
-    String leaveId=request.getParameter("leaveId");
-    if(leaveId==null){
-        leaveId=(String)request.getAttribute("leaveId");
+    String leaveId = request.getParameter("leaveId");
+    if (leaveId == null) {
+        leaveId = (String) request.getAttribute("leaveId");
     }
-    Dbutil db=new Dbutil();
-    Message mess=new Message();
-    List list=db.select1("select * from leaveMessage where leaveId="+leaveId);
+    Dbutil db = new Dbutil();
+    Message mess = new Message();
+    List list = db.select1("select * from leaveMessage where leaveId=" + leaveId);
 
-    Users m=new Users();
-    m=(Users)list.get(0);
-    String Id=m.getId();
-    String title=m.getTitle();
-    String username=m.getUsername();
-    String leaveBody=m.getLeaveBody();
+    Users m = new Users();
+    m = (Users) list.get(0);
+    String Id = m.getId();
+    String title = m.getTitle();
+    String username = m.getUsername();
+    String leaveBody = m.getLeaveBody();
 
 %>
 <div class="reply-main">
     <div class="reply-main-body">
         <h1>Spring论坛</h1>
-        <p>欢迎用户<a href="#"><%=session.getAttribute("username") %></a><a href="index.jsp"> 退出</a></p>
+        <p>欢迎用户<a href="#"><%=session.getAttribute("username") %>
+        </a><a href="index.jsp"> 退出</a></p>
         <hr/>
 
         <table>
@@ -54,10 +55,14 @@
                 <td>楼主</td>
             </tr>
             <tr>
-                <td><%=Id %></td>
-                <td><%=title %></td>
-                <td><%=leaveBody %></td>
-                <td><%=username%></td>
+                <td><%=Id %>
+                </td>
+                <td><%=title %>
+                </td>
+                <td><%=leaveBody %>
+                </td>
+                <td><%=username%>
+                </td>
             </tr>
         </table>
 
@@ -70,40 +75,47 @@
                 <td>帖子编号</td>
                 <td>回复时间</td>
             </tr>
-            <%!int num=0; %>
+            <%!int num = 0; %>
             <%
-                List<Users> list1=db.select2("select * from replay where leaveId="+leaveId);
-                Dbutil db1=new Dbutil();
-                Message mess1=new Message();
+                List<Users> list1 = db.select2("select * from replay where leaveId=" + leaveId);
+                Dbutil db1 = new Dbutil();
+                Message mess1 = new Message();
           /* System.out.println(list1.toString());
            System.out.println("-----------------");*/
-                for(int i=0;i<list1.size();i++){
-                    Users m1=new Users();
-                    m1=(Users)list1.get(i);
-                    String replayId=m1.getId();
-                    String replayBody=m1.getReplyBody();
-                    String replayname=m1.getUsername();
-                    Date timestamp=(Date)m1.getRep_time();
-                    DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                for (int i = 0; i < list1.size(); i++) {
+                    Users m1 = new Users();
+                    m1 = (Users) list1.get(i);
+                    String replayId = m1.getId();
+                    String replayBody = m1.getReplyBody();
+                    String replayname = m1.getUsername();
+                    Date timestamp = (Date) m1.getRep_time();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     System.out.println(dateFormat.format(timestamp));
                     System.out.println(replayBody);
-                    num=i+1;
+                    num = i + 1;
 
             %>
             <tr>
-                <td><%=i+1 %>楼</td>
-                <td><%=replayBody %></td>
-                <td><%=replayname %></td>
-                <td><%=leaveId %></td>
-                <td><%=dateFormat.format(timestamp) %></td>
-                <%if(true) {
-                    out.print("<td><a href='delete_rep?replayId="+replayId+"&leaveId="+leaveId+"' onclick='return isdelete()'>删除</a></td>");
-                } %>
+                <td><%=i + 1 %>楼</td>
+                <td><%=replayBody %>
+                </td>
+                <td><%=replayname %>
+                </td>
+                <td><%=leaveId %>
+                </td>
+                <td><%=dateFormat.format(timestamp) %>
+                </td>
+                <% String uname = (String) session.getAttribute("username");
+
+                    if (uname.equals(username)) {
+                        out.print("<td><a href='delete_rep?replayId=" + replayId + "&leaveId=" + leaveId + "' onclick='return isdelete()'>删除</a></td>");
+                    } %>
             </tr>
-            <%}
+            <%
+                }
                 System.out.println(num);
-                db.Insert("update leavemessage set repnum="+num+" where leaveId="+leaveId);
-                num=0;
+                db.Insert("update leavemessage set repnum=" + num + " where leaveId=" + leaveId);
+                num = 0;
             %>
         </table>
         <hr/>
@@ -111,8 +123,9 @@
         <form action="reply" method="post">
             <label>回复内容</label><br/>
             <textarea rows="5" cols="100" name="replayBody"></textarea><br/>
-            <input  type="hidden"  value="<%=leaveId%>"  name="leaveId"/>
-            <button  type="submit" class="reply-button"  name="fabiao" />发表回复</button>
+            <input type="hidden" value="<%=leaveId%>" name="leaveId"/>
+            <button type="submit" class="reply-button" name="fabiao"/>
+            发表回复</button>
         </form>
     </div>
 </div>
@@ -120,9 +133,9 @@
 </body>
 <script>
     function isdelete() {
-        if (confirm("是否要删除？")){
+        if (confirm("是否要删除？")) {
             return true;
-        }else return false;
+        } else return false;
     }
 </script>
 </html>
