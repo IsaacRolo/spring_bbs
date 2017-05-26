@@ -119,7 +119,6 @@ public class Dbutil {
 				stu.setId(rs.getString(1));
 				stu.setUsername(rs.getString(2));
 
-				stu.setId(rs.getString(4));
 				stu.setReplyBody(rs.getString(3));
 				stu.setRep_time(rs.getTimestamp(5));
 
