@@ -58,11 +58,20 @@
 .leave-main-body a{
     text-decoration: none;
 
-    -webkit-tap-highlight-color: rgba(225,225,225,.5);
+}
+
+.leave-main-body a:hover{
+    text-decoration: underline;
 }
 
 .leave-main-body input {
 	width: 73%;
+}
+
+.leave-main-body em{
+    color: #EF1F1F;
+
+    font-style: normal;
 }
 
 .leave-main-body textarea {
@@ -95,4 +104,8 @@
 
 .feed-author {
     font-weight: 700;
+}
+
+.feed-time {
+    color: #999;
 }
