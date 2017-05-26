@@ -41,7 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    System.out.println(isAdmin);
 	    System.out.println(score);
 	     %>
-        <p>欢迎<%=myusername %>，您当前的积分为：<%=score %> <a href="post.jsp">发帖</a> </p>
+        <p>欢迎 <em><%if (isAdmin==1) {
+            out.print("管理员");
+        } else out.print("用户");%></em>  <%=myusername %>  ，您当前的积分为：<em><%=score %></em> <a href="post.jsp">发帖</a> </p>
           <div class="feed-list">
 
     <%
@@ -50,15 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    
 	    
 	    List<Users> list=db.select1("select * from leavemessage");
-	    for(int i=0;i<list.size();i++){
+	    for(int i=list.size()-1;i > 0;i--){
 	    us=list.get(i);
 	    String username=us.getUsername();
 	    String title=us.getTitle();
 	    String leaveBody=us.getLeaveBody();
 	    String leaveId=us.getId();
 	    int repNum=us.getRepnum();
-	    Date time=(Date)us.getTime();
-        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    Date post_time=(Date)us.getTime();
+        DateFormat post_dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     %>
 
               <div class="feed-item">
@@ -67,16 +69,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <p class="feed-author"><%=username %></p>
                   <div class="feed-content">
                       <%=leaveBody %>
-                      <p class="feed-time">回复数：<%=repNum %>  发表时间：<%=dateFormat.format(time) %></p>
+                      <p class="feed-time">回复数：<%=repNum %> 发表时间：<%=post_dateFormat.format(post_time) %></p>
                   </div>
               </div>
 
             <%if(isAdmin==1) {
-            out.print("<td><a href='delete?leaveId="+leaveId+"'>删除</a></td>");
+            out.print("<a href='delete?leaveId="+leaveId+"' onclick='return isdelete()' >删除</a>");
             } %>
    <% }%>
           </div>
       </div>    
     </div>
   </body>
+<script>
+    function isdelete() {
+        if (confirm("是否要删除？")){
+            return true;
+        }else return false;
+    }
+</script>
 </html>
