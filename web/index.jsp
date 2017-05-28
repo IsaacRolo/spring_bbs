@@ -24,6 +24,7 @@
 <body>
 <div class="login-main">
     <div class="login-main-content">
+        <img src="img/logo.png" alt="logo">
         <h2>欢迎来到Spring论坛</h2>
         <form action="login" method="post">
             <input type="text" name="username" placeholder="用户名"><br/>
