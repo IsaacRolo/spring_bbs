@@ -89,11 +89,11 @@ public class Dbutil {
 				Users stu = new Users();
 				stu.setId(rs.getString(2));
 				stu.setUsername(rs.getString(1));
-				/* System.out.println("-----------------------"); */
 				stu.setTitle(rs.getString(3));
 				stu.setLeaveBody(rs.getString(4));
 				stu.setRepnum(rs.getInt(5));
 				stu.setTime(rs.getTimestamp(6));
+				stu.setIsTop(rs.getInt(7));
 				list.add(stu);
 
 			}
