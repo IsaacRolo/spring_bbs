@@ -44,6 +44,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <p>欢迎 <em><%if (isAdmin==1) {
             out.print("管理员");
         } else out.print("用户");%></em>  <%=myusername %>  ，您当前的积分为：<em><%=score %></em> <a href="post.jsp">发帖</a><a href="index.jsp">  退出登录</a> </p>
+
+          <div class="feed-list">
+
+              <%
+
+                  Users us_top =new Users();
+
+
+                  List<Users> list_top =db.select1("select * from leavemessage where isTop=1");
+                  for(int i = list_top.size()-1; i >=0; i--){
+                      us_top = list_top.get(i);
+                      String username= us_top.getUsername();
+                      String title= us_top.getTitle();
+                      String leaveBody= us_top.getLeaveBody();
+                      String leaveId= us_top.getId();
+                      int repNum= us_top.getRepnum();
+                      int isTop=us_top.getIsTop();
+                      Date post_time=(Date) us_top.getTime();
+                      DateFormat post_dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+              %>
+
+              <div class="feed-item">
+                  <hr>
+                  <h2 class="feed-title">置顶</h2>
+                  <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %></a></h2>
+                  <p class="feed-author"><%=username %></p>
+                  <div class="feed-content">
+                      <%=leaveBody %>
+                      <p class="feed-time">回复数：<%=repNum %> 发表时间：<%=post_dateFormat.format(post_time) %></p>
+                  </div>
+              </div>
+
+              <%if(isAdmin==1) {
+                  out.print("<a href='delete?leaveId="+leaveId+"' onclick='return isdelete()' >删除</a>");
+              } %>
+
+              <%if(isAdmin==1&&isTop==1) {
+                  out.print("<a href='cancelTop?leaveId="+leaveId+"' >取消置顶</a>");
+              } %>
+              <% }%>
+          </div>
+
           <div class="feed-list">
 
     <%
@@ -52,13 +94,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    
 	    
 	    List<Users> list=db.select1("select * from leavemessage");
-	    for(int i=list.size()-1;i > 0;i--){
+	    for(int i=list.size()-1;i >= 0;i--){
 	    us=list.get(i);
 	    String username=us.getUsername();
 	    String title=us.getTitle();
 	    String leaveBody=us.getLeaveBody();
 	    String leaveId=us.getId();
 	    int repNum=us.getRepnum();
+	    int isTop=us.getIsTop();
 	    Date post_time=(Date)us.getTime();
         DateFormat post_dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     %>
@@ -76,9 +119,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <%if(isAdmin==1) {
             out.print("<a href='delete?leaveId="+leaveId+"' onclick='return isdelete()' >删除</a>");
             } %>
+
+              <%if(isAdmin==1&&isTop==0) {
+                  out.print("<a href='top?leaveId="+leaveId+"' >置顶</a>");
+              } %>
+
    <% }%>
           </div>
-      </div>    
+      </div>
     </div>
   </body>
 <script>

@@ -12,7 +12,7 @@ public class Message {
 			Timestamp time) {
 
 		db.Insert("insert into leaveMessage values('" + username + "',null,'"
-				+ title + "','" + leaveBody + "',null,'" + time + "')");
+				+ title + "','" + leaveBody + "',null,'" + time + "',null)");
 	}
 
 	public void reply(String replayusername, String replayBody, String leaveId,

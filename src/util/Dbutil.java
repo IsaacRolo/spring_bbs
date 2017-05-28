@@ -89,11 +89,11 @@ public class Dbutil {
 				Users stu = new Users();
 				stu.setId(rs.getString(2));
 				stu.setUsername(rs.getString(1));
-				/* System.out.println("-----------------------"); */
 				stu.setTitle(rs.getString(3));
 				stu.setLeaveBody(rs.getString(4));
 				stu.setRepnum(rs.getInt(5));
 				stu.setTime(rs.getTimestamp(6));
+				stu.setIsTop(rs.getInt(7));
 				list.add(stu);
 
 			}
@@ -119,7 +119,7 @@ public class Dbutil {
 				stu.setId(rs.getString(1));
 				stu.setUsername(rs.getString(2));
 
-				stu.setId(rs.getString(4));
+
 				stu.setReplyBody(rs.getString(3));
 				stu.setRep_time(rs.getTimestamp(5));
 
