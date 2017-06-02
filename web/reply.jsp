@@ -1,6 +1,6 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.text.DateFormat" %>
-<@page import="java.sql.Timestamp" %>
+<%@page import="java.sql.Timestamp" %>
 <%@ page language="java" import="java.util.*,util.*,service.*" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
