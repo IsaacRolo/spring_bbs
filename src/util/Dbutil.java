@@ -76,6 +76,9 @@ public class Dbutil {
 
 	}
 
+	/**
+	 * 帖子相关的查询，表对应leavemessage表
+	 */
 	public List select1(String sql) {
 		getConn();
 
@@ -94,6 +97,7 @@ public class Dbutil {
 				stu.setRepnum(rs.getInt(5));
 				stu.setTime(rs.getTimestamp(6));
 				stu.setIsTop(rs.getInt(7));
+				stu.setTag(rs.getString(8));
 				list.add(stu);
 
 			}
@@ -124,6 +128,35 @@ public class Dbutil {
 				stu.setRep_time(rs.getTimestamp(5));
 
 				list.add(stu);
+
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	public List select3(String sql) {
+		getConn();
+
+		try {
+			stmt = conn.createStatement();
+			// int rs=stmt.executeUpdate(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+
+			list = new ArrayList();
+			while (rs.next()) {
+				Rereply rereply = new Rereply();
+				rereply.setRereplayId(rs.getInt(1));
+				rereply.setReplayId(rs.getInt(2));
+				rereply.setRereplayname(rs.getString(3));
+				rereply.setRereplayBody(rs.getString(4));
+				rereply.setRep_time(rs.getTimestamp(5));
+
+				list.add(rereply);
 
 			}
 			rs.close();

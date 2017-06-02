@@ -81,4 +81,22 @@
         <servlet-name>cancelTop</servlet-name>
         <url-pattern>/cancelTop</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>replyre</servlet-name>
+        <servlet-class>servlet.Replyre</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>replyre</servlet-name>
+        <url-pattern>/replyre</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete_rerep</servlet-name>
+        <servlet-class>servlet.Delete_rerep</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete_rerep</servlet-name>
+        <url-pattern>/delete_rerep</url-pattern>
+    </servlet-mapping>
 </web-app>

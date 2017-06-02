@@ -32,14 +32,14 @@ public class Leave extends HttpServlet {
 		String title = req.getParameter("title");
 		String leaveId = req.getParameter("leaveId");
 		String leaveBody = req.getParameter("leaveBody");
+		String tag=req.getParameter("tag");
 		Date date = new Date();
 		Timestamp timeStamp = new Timestamp(date.getTime());
-
 		Dbutil db = new Dbutil();
 		Message mess = new Message();
 		UserService userService = new UserService();
 		userService.postSco(username);
-		mess.leave(username, title, leaveBody, timeStamp);
+		mess.leave(username, title, leaveBody, timeStamp,tag);
 		resp.sendRedirect("leave.jsp");
 
 	}
