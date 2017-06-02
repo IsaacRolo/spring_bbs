@@ -21,34 +21,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="css/leave.css">
 
   </head>
-  <jsp:include page="header.html"></jsp:include>
   <body>
-        <div class="leave-main">
+  <jsp:include page="header.html"></jsp:include>
+  <div class="leave-main">
       <div class="leave-main-body">
         <h1>Spring论坛</h1>
-        <%String myusername=(String)session.getAttribute("username"); %> 
-        <%	    
+        <%String myusername=(String)session.getAttribute("username");
+          int isAdmin=0;
+        int score=0;%>
+        <%
+        if(myusername!=null){
         Dbutil db=new Dbutil();
 	    
 	    Users user=new Users();
 	    
 	    List<Users> list2=db.select("select * from users where username='"+myusername+"'");
 	    user=list2.get(0);
-	    int isAdmin=user.getIsAdmin();
-	    int score=user.getScore();
+	    isAdmin=user.getIsAdmin();
+	    score=user.getScore();
 	    System.out.println(isAdmin);
 	    System.out.println(score);
-	     %>
+
+	    %>
         <p>欢迎 <em><%if (isAdmin==1) {
             out.print("管理员");
-        } else out.print("用户");%></em>  <%=myusername %>  ，您当前的积分为：<em><%=score %></em> <a href="post.jsp">发帖</a><a href="index.jsp">  退出登录</a> </p>
 
+        }
+        else out.print("用户");%></em>  <%=myusername %>  ，您当前的积分为：<em><%=score %></em> <a href="post.jsp">发帖</a><a href="index.jsp">  退出登录</a> </p>
+        <%}else{out.print("欢迎游客，登陆后即可发帖");}%>
           <div class="feed-list">
 
               <%
 
                   Users us_top =new Users();
-
+                  Dbutil db=new Dbutil();
 
                   List<Users> list_top =db.select1("select * from leavemessage where isTop=1");
                   for(int i = list_top.size()-1; i >=0; i--){
@@ -59,6 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       String leaveId= us_top.getId();
                       int repNum= us_top.getRepnum();
                       int isTop=us_top.getIsTop();
+                      String tag=us_top.getTag();
                       Date post_time=(Date) us_top.getTime();
                       DateFormat post_dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
               %>
@@ -66,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="feed-item">
                   <hr>
                   <h2 class="feed-title">置顶</h2>
-                  <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %></a></h2>
+                  <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %>  </a><%=tag%></h2>
                   <p class="feed-author"><%=username %></p>
                   <div class="feed-content">
                       <%=leaveBody %>
@@ -100,13 +107,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    String leaveId=us.getId();
 	    int repNum=us.getRepnum();
 	    int isTop=us.getIsTop();
+	    String tag=us.getTag();
 	    Date post_time=(Date)us.getTime();
         DateFormat post_dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     %>
 
               <div class="feed-item">
                   <hr>
-                  <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %></a></h2>
+                  <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %> </a> <%=tag%></h2>
                   <p class="feed-author"><%=username %></p>
                   <div class="feed-content">
                       <%=leaveBody %>

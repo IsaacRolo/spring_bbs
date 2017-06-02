@@ -29,7 +29,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <hr/>
         <form action="leave" method="post">
           <label>标题：</label><br/>
-          <input type="text" name="title" /><br/>
+            <input type="text" name="title" /><br/>
+            <label>帖子分类：</label><br/>
+            <select name="tag">
+              <option>Java</option>
+              <option>C</option>
+              <option>C++</option>
+              <option>PHP</option>
+              <option>Python</option>
+              <option>C#</option>
+              <option>JavaScript</option>
+              <option>Visual Basic .Net</option>
+              <option>Swift</option>
+              <option>其他</option>
+          </select><br/>
           <label>内容：</label><br>
           <textarea rows="5" cols="100" name="leaveBody"></textarea><br/>
           <button type="submit" class="leave-button">发表帖子</button>
