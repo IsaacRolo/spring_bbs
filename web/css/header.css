@@ -1,0 +1,25 @@
+.head{
+    height: 46px;
+
+    background: linear-gradient(#02f78e ,#02c874);
+
+    width: 100%;
+
+    color: #f7fafc;
+
+    font-size: 16px;
+}
+
+.head_left{
+    float: left;
+
+    height: 100%;
+
+    text-align: center;
+
+    line-height: 46px;
+}
+
+.head_right{
+    float: right;
+}
