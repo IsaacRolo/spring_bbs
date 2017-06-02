@@ -1,0 +1,39 @@
+html{
+    height:100%;
+}
+
+body {
+    color: #555;
+
+    height: 100%;
+
+    background: #f7fafc;    
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+h1,h2,h3 {
+	text-align: center;
+}
+
+input {
+	padding: 0.8em 0.4em;
+
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+button {
+    padding: 0.8em 0.4em;
+
+    width: 100%;
+
+    box-sizing: border-box;    
+}
