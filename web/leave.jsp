@@ -5,6 +5,16 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+int startpoint=0;
+int numberPerpage=5;
+int currentPage=1;
+int currentPoint=0;
+if(request.getAttribute("sp")!=null) {
+    startpoint = (int) request.getAttribute("sp");
+}
+if(request.getAttribute("currentPage")!=null) {
+    currentPage = (int) request.getAttribute("currentPage");
+}
 %>
 
 <!DOCTYPE HTML>
@@ -98,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    Users us=new Users();
 	    
 	    
-	    List<Users> list=db.select1("select * from leavemessage");
+	    List<Users> list=db.select1("select * from leavemessage where isTop=0 limit "+startpoint+","+numberPerpage+";" );
 	    for(int i=list.size()-1;i >= 0;i--){
 	    us=list.get(i);
 	    String username=us.getUsername();
@@ -130,7 +140,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   out.print("<a href='top?leaveId="+leaveId+"' >置顶</a>");
               } %>
 
-   <% }%>
+   <% }
+        List<Users> list3=db.select1("select * from leavemessage where isTop=0;");
+        int messageLength=list3.size();
+        int pageNum=0;
+        if(messageLength%numberPerpage==0){
+            pageNum=messageLength/numberPerpage;
+        }
+        else {
+            pageNum = messageLength / numberPerpage + 1;
+        }
+   %>
+              <br/>
+              <p>总页数：<%=pageNum%></p>
+              <p>当前页数：<%=currentPage%></p>
+              <%if(currentPage!=1){%>
+              <a href="nextpage?startpoint=<%=startpoint%>&isNext=0">上一页</a>
+              <%}
+                for (int i=1;i<=pageNum;i++){
+                  currentPoint=numberPerpage*(i-1);
+              %>
+              <a href="nextpage?startpoint=<%=currentPoint%>"><%=i%></a>
+                <%}
+                if(currentPage<pageNum){
+              %>
+              <a href="nextpage?startpoint=<%=startpoint%>&isNext=1">下一页</a>
+              <%}%>
           </div>
       </div>
     </div>

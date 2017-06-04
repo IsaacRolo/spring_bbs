@@ -109,5 +109,13 @@
         <servlet-name>delete_rerep</servlet-name>
         <url-pattern>/delete_rerep</url-pattern>
     </servlet-mapping>
+    <servlet>
+       <servlet-name>nextpage</servlet-name>
+        <servlet-class>servlet.NextPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>nextpage</servlet-name>
+        <url-pattern>/nextpage</url-pattern>
+    </servlet-mapping>
 
 </web-app>
