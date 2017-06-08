@@ -117,5 +117,13 @@
         <servlet-name>nextpage</servlet-name>
         <url-pattern>/nextpage</url-pattern>
     </servlet-mapping>
+    <servlet>
+       <servlet-name>quit</servlet-name>
+        <servlet-class>servlet.Quit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>quit</servlet-name>
+        <url-pattern>/quit</url-pattern>
+    </servlet-mapping>
 
 </web-app>

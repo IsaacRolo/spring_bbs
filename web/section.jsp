@@ -9,6 +9,12 @@
     int numberPerpage = 5;
     int currentPage = 1;
     int currentPoint = 0;
+    String sectionName = null;
+    Integer
+    if (request.getParameter("sectionName") != null) {
+        sectionName = request.getParameter("sectionName");
+    }
+
     if (request.getAttribute("sp") != null) {
         startpoint = (int) request.getAttribute("sp");
     }
@@ -54,7 +60,6 @@
                 System.out.println(isAdmin);
                 System.out.println(score);
 
-
         %>
         <p>欢迎 <em><%
             if (isAdmin == 1) {
@@ -89,48 +94,8 @@
 
                 Users us_top = new Users();
                 Dbutil db = new Dbutil();
-
-                List<Users> list_top = db.select1("select * from leavemessage where isTop=1");
-                for (int i = list_top.size() - 1; i >= 0; i--) {
-                    us_top = list_top.get(i);
-                    String username = us_top.getUsername();
-                    String title = us_top.getTitle();
-                    String leaveBody = us_top.getLeaveBody();
-                    String leaveId = us_top.getId();
-                    int repNum = us_top.getRepnum();
-                    int isTop = us_top.getIsTop();
-                    String tag = us_top.getTag();
-                    Date post_time = (Date) us_top.getTime();
-                    DateFormat post_dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             %>
 
-            <div class="feed-item">
-                <hr>
-                <h2 class="feed-title">置顶</h2>
-                <h2 class="feed-title"><a href="reply.jsp?leaveId=<%=leaveId%>"><%=title %>
-                </a><%=tag%>
-                </h2>
-                <p class="feed-author"><%=username %>
-                </p>
-                <div class="feed-content">
-                    <%=leaveBody %>
-                    <p class="feed-time">回复数：<%=repNum %> 发表时间：<%=post_dateFormat.format(post_time) %>
-                    </p>
-                </div>
-            </div>
-
-            <%
-                if (isAdmin == 1) {
-                    out.print("<a href='delete?leaveId=" + leaveId + "' onclick='return isdelete()' >删除</a>");
-                }
-            %>
-
-            <%
-                if (isAdmin == 1 && isTop == 1) {
-                    out.print("<a href='cancelTop?leaveId=" + leaveId + "' >取消置顶</a>");
-                }
-            %>
-            <% }%>
         </div>
 
         <div class="feed-list">
@@ -140,7 +105,7 @@
                 Users us = new Users();
 
 
-                List<Users> list = db.select1("select * from leavemessage where isTop=0 limit " + startpoint + "," + numberPerpage + ";");
+                List<Users> list = db.select1("select * from leavemessage where  tag='" + sectionName + "' limit " + startpoint + "," + numberPerpage + ";");
                 for (int i = list.size() - 1; i >= 0; i--) {
                     us = list.get(i);
                     String username = us.getUsername();
@@ -181,7 +146,7 @@
             %>
 
             <% }
-                List<Users> list3 = db.select1("select * from leavemessage where isTop=0;");
+                List<Users> list3 = db.select1("select * from leavemessage where  tag='" + sectionName + "';");
                 int messageLength = list3.size();
                 int pageNum = 0;
                 if (messageLength % numberPerpage == 0) {
@@ -196,19 +161,19 @@
             <p>当前页数：<%=currentPage%>
             </p>
             <%if (currentPage != 1) {%>
-            <a href="nextpage?startpoint=<%=startpoint%>&isNext=0">上一页</a>
+            <a href="nextpage?startpoint=<%=startpoint%>&isNext=0&sectionName=<%=sectionName%>">上一页</a>
             <%
                 }
                 for (int i = 1; i <= pageNum; i++) {
                     currentPoint = numberPerpage * (i - 1);
             %>
-            <a href="nextpage?startpoint=<%=currentPoint%>"><%=i%>
+            <a href="nextpage?startpoint=<%=currentPoint%>&sectionName=<%=sectionName%>"><%=i%>
             </a>
             <%
                 }
                 if (currentPage < pageNum) {
             %>
-            <a href="nextpage?startpoint=<%=startpoint%>&isNext=1">下一页</a>
+            <a href="nextpage?startpoint=<%=startpoint%>&isNext=1&sectionName=<%=sectionName%>">下一页</a>
             <%}%>
         </div>
     </div>
