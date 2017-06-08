@@ -39,3 +39,7 @@ button {
 
     box-sizing: border-box;    
 }
+
+em {
+    font-style: normal;
+}

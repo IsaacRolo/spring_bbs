@@ -24,7 +24,7 @@
 
     min-height: 590px;
 
-    width: 70%;
+    width: 50%;
 
     display: inline-block;
 
@@ -53,6 +53,14 @@
 
 .leave-main-body p{
     margin: 0;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow: ellipsis;
+
+    width: inherit;
 }
 
 .leave-main-body a{
@@ -98,8 +106,29 @@
     background: #02f78e;	
 }
 
-.leave-main-body table {
-	text-align: center;
+.feed-top-field {
+    margin-top: 20px;
+
+    font-size: 20px;
+}
+
+.feed-item-top {
+    border: 1px solid #ccc;
+
+    padding: 10px;
+
+    margin-top: 10px;
+
+}
+
+.feed-item-top:hover {
+    background-color: #e8fff5;
+}
+
+.feed-tag {
+    font-size: 13px;
+
+    color: #999;
 }
 
 .feed-author {
@@ -108,4 +137,8 @@
 
 .feed-time {
     color: #999;
+}
+
+.feed-title img {
+    vertical-align: middle;
 }

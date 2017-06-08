@@ -22,7 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-        <div class="leave-main">
+  <jsp:include page="header.jsp"></jsp:include>
+  <div class="leave-main">
       <div class="leave-main-body">
         <h1>Spring论坛</h1>
         <p>欢迎</p>

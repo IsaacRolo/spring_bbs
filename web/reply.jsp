@@ -27,6 +27,7 @@
 </head>
 
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 <%
 
     String leaveId=request.getParameter("leaveId");
