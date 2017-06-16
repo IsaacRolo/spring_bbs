@@ -106,6 +106,10 @@
     background: #02f78e;	
 }
 
+.feed-top {
+    margin-bottom: 10px;
+}
+
 .feed-top-field {
     margin-top: 20px;
 
@@ -133,6 +137,16 @@
 
 .feed-author {
     font-weight: 700;
+}
+
+.feed-author img {
+    vertical-align: middle;
+}
+
+.feed-content p {
+    margin-bottom: 5px;
+
+    margin-top: 5px;
 }
 
 .feed-time {

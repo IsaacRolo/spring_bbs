@@ -10,7 +10,7 @@
     int currentPage = 1;
     int currentPoint = 0;
     String sectionName = null;
-    Integer
+
     if (request.getParameter("sectionName") != null) {
         sectionName = request.getParameter("sectionName");
     }
@@ -38,10 +38,9 @@
 
 </head>
 <body>
-<jsp:include page="header.html"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <div class="leave-main">
     <div class="leave-main-body">
-        <h1>Spring论坛</h1>
         <%
             String myusername = (String) session.getAttribute("username");
             int isAdmin = 0;
@@ -59,19 +58,8 @@
                 score = user.getScore();
                 System.out.println(isAdmin);
                 System.out.println(score);
-
-        %>
-        <p>欢迎 <em><%
-            if (isAdmin == 1) {
-                out.print("管理员");
-
-            } else out.print("用户");
-        %></em> <%=myusername %>  ，您当前的积分为：<em><%=score %>
-        </em> <a href="post.jsp">发帖</a><a href="quit"> 退出登录</a></p>
-        <%
-            } else {
-                out.print("欢迎游客，登陆后即可发帖");
             }
+
         %>
         <table>
             <tr>
