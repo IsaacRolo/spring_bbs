@@ -125,5 +125,13 @@
         <servlet-name>quit</servlet-name>
         <url-pattern>/quit</url-pattern>
     </servlet-mapping>
+    <servlet>
+       <servlet-name>saveInfo</servlet-name>
+        <servlet-class>servlet.SaveInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>saveInfo</servlet-name>
+        <url-pattern>/saveInfo</url-pattern>
+    </servlet-mapping>
 
 </web-app>

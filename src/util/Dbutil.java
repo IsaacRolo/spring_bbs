@@ -41,9 +41,10 @@ public class Dbutil {
 			list = new ArrayList();
 			while (rs.next()) {
 				Users stu = new Users();
+				stu.setId(rs.getString(1));
 				stu.setUsername(rs.getString(2));
-				/* System.out.println("-----------------------"); */
 				stu.setPassword(rs.getString(3));
+				stu.setEmail(rs.getString(4));
 				stu.setIsAdmin(rs.getInt(5));
 				stu.setScore(rs.getInt(6));
 				list.add(stu);
