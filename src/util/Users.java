@@ -17,6 +17,25 @@ public class Users {
 	private int score;
 	private int isTop;
 	private String tag;
+	private String sex;
+	private String intro;
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
 
 	public String getTag() {
 		return tag;

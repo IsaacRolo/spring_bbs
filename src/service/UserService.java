@@ -10,7 +10,7 @@ public class UserService {
 	String sql = "";
 
 	public void Reg(String username, String password, String email) {
-		sql = "insert into users values(null,'" + username + "','" + password
+		sql = "insert into users (username,password,email) values('" + username + "','" + password
 				+ "','" + email + "') ";
 		db.Insert(sql);
 	}
@@ -23,24 +23,31 @@ public class UserService {
 		return list;
 	}
 
-	public void postSco(String username) {
+	private int getScore(String username) {
 		Users user = new Users();
 		List<Users> list2 = db.select("select * from users where username='"
 				+ username + "'");
 		user = list2.get(0);
-		int score = user.getScore();
+		return user.getScore();
+	}
+	public void postSco(String username) {
+		int score = getScore(username);
 		score += 10;
 		db.Insert("Update users set score='" + score + "' where username='"
 				+ username + "'");
 	}
 
+
 	public void repSco(String username) {
-		Users user = new Users();
-		List<Users> list2 = db.select("select * from users where username='"
+		int score = getScore(username);
+		score += 5;
+		db.Insert("Update users set score='" + score + "' where username='"
 				+ username + "'");
-		user = list2.get(0);
-		int score = user.getScore();
-		score += 1;
+	}
+
+	public void rerepSco(String username) {
+		int score = getScore(username);
+		score += 3;
 		db.Insert("Update users set score='" + score + "' where username='"
 				+ username + "'");
 	}

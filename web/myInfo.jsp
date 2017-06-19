@@ -12,6 +12,8 @@
     String password=null;
     String identity=null;
     String id=null;
+    String sex=null;
+    String intro=null;
 %>
 <html>
 <head>
@@ -35,20 +37,26 @@
             email=user.getEmail();
             isAdmin = user.getIsAdmin();
             score=user.getScore();
+            sex=user.getSex();
+            intro=user.getIntro();
 
             session.setAttribute("id",id);
         }
-        if (isAdmin==0){
-            identity="普通用户";
+        if (isAdmin==1){
+            identity="管理员";
         }
         else{
-            identity="管理员";
+            identity="普通用户";
         }
     %>
 
     <form id="saveMyInfo" action="saveInfo" method="post">
         <p>用户名</p>
-        <input type="text" value=<%=myusername%> name="saveUsername">
+        <p><%=myusername%></p>
+        <p>性别</p>
+        <input  type="text" value=<%=sex%> name="sex">
+        <p>自我介绍</p>
+        <input  type="text" value=<%=intro%> name="intro">
         <p>密码</p>
         <input id="psw" type="password" value=<%=password%> name="savePsw">
         <p>确认密码</p>
@@ -56,7 +64,7 @@
         <p>email</p>
         <input type="text" value=<%=email%> name="saveEmail">
         <p>身份</p>
-        <p><%=identity%></p>
+        <p><%=identity%><%if (isAdmin==1){  out.print("<a href='manage.jsp'>管理用户</a>");}%></p>
         <p>当前积分</p>
         <p><%=score%></p>
         <button  class="leave-button" onclick="return isPsw()">保存</button>
@@ -68,10 +76,12 @@
         var psw2=document.getElementById('psw2').value;
         if(psw==psw2){
             alert("保存成功");
-            document.getElementById("saveMyInfo").submit();
+            return true;
+//            document.getElementById("saveMyInfo").submit();
         }
         else{
             alert("两次密码输入不一致");
+            return false;
         }
     }
 </script>

@@ -133,5 +133,21 @@
         <servlet-name>saveInfo</servlet-name>
         <url-pattern>/saveInfo</url-pattern>
     </servlet-mapping>
+    <servlet>
+       <servlet-name>ban</servlet-name>
+        <servlet-class>servlet.Ban</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ban</servlet-name>
+        <url-pattern>/ban</url-pattern>
+    </servlet-mapping>
+    <servlet>
+       <servlet-name>toAdmin</servlet-name>
+        <servlet-class>servlet.ToAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>toAdmin</servlet-name>
+        <url-pattern>/toAdmin</url-pattern>
+    </servlet-mapping>
 
 </web-app>

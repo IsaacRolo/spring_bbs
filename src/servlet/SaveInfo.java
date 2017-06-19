@@ -19,14 +19,15 @@ public class SaveInfo extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		HttpSession session=req.getSession();
 		String id= (String) session.getAttribute("id");
-		String username=req.getParameter("saveUsername");
 		String psw=req.getParameter("savePsw");
 		String email=req.getParameter("saveEmail");
+		String sex=req.getParameter("sex");
+		String intro=req.getParameter("intro");
 
 
 		Dbutil db = new Dbutil();
-		db.Delete("update users set username='"+username+"',password='"+psw+"',email='"+email+"' where id='" + id+"'");
-		resp.sendRedirect("leave.jsp");
+		db.Delete("update users set password='"+psw+"',email='"+email+"',sex='"+sex+"',intro='"+intro+"' where id='" + id+"'");
+		resp.sendRedirect("myInfo.jsp");
 
 	}
 

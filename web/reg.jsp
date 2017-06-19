@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="text" name="email" placeholder="邮箱"/><br/>
           <button type="submit" class="login-button" >注册</button>
         </form>
-        如果您已有账号，请<a href="login.jsp">登录</a>        
+        如果您已有账号，请<a href="index.jsp">登录</a>
       </div>
     </div>
   </body>

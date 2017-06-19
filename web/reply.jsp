@@ -248,11 +248,12 @@
 
     function canRep() {
         var score="<%=score_m%>";
-            if (score < 80) {
-                alert("您当前的积分为：" + score + "，积分不足，无法进行发帖操作");
+        var u_isAdmin="<%=u_isAdmin%>";
+            if (score >= 80||u_isAdmin==1) {
+                document.getElementById("reply").submit();
             }
             else {
-                document.getElementById("reply").submit();
+                alert("您当前的积分为：" + score + "，积分不足，无法进行回复操作");
             }
 
         }

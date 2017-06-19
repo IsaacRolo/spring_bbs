@@ -47,6 +47,8 @@ public class Dbutil {
 				stu.setEmail(rs.getString(4));
 				stu.setIsAdmin(rs.getInt(5));
 				stu.setScore(rs.getInt(6));
+				stu.setSex(rs.getString(7));
+				stu.setIntro(rs.getString(8));
 				list.add(stu);
 
 			}

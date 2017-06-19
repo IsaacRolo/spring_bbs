@@ -35,7 +35,7 @@ public class Reg extends HttpServlet{
 			
 		}
 		us.Reg(username, password, email);
-		resp.sendRedirect("login.jsp");
+		resp.sendRedirect("index.jsp");
 		
 		
 	}

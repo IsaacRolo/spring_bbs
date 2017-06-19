@@ -26,7 +26,7 @@
                     System.out.println(isAdmin);
                     System.out.println(score);
             %>
-            <p> <em><%if (isAdmin==1) {out.print("管理员");}%> </em>  <%=myusername %>  积分：<em><%=score %></em> <a href="quit">  退出</a></p>
+            <p> <em><%if (isAdmin==1) {out.print("管理员");}%> </em>  <a href="myInfo.jsp"><%=myusername %></a>  积分：<em><%=score %></em> <a href="quit">  退出</a></p>
             <%}else{out.print("欢迎游客，<a href='index.jsp'>登陆</a>后即可发帖");}%>
         </div>
 
@@ -38,12 +38,13 @@
     function canPost() {
         var score="<%=score%>";
         var myusername="<%=myusername%>";
+        var isAdmin="<%=isAdmin%>";
         if(myusername!="null") {
-            if (score < 100) {
-                alert("您当前的积分为：" + score + "，积分不足，无法进行发帖操作");
+            if (score >= 100||isAdmin==1) {
+                location.href = "post.jsp";
             }
             else {
-                location.href = "post.jsp";
+                alert("您当前的积分为：" + score + "，积分不足，无法进行发帖操作");
             }
         }
         else {

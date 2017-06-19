@@ -20,7 +20,8 @@ public class Replyre extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-
+		HttpSession session=req.getSession();
+		String username= (String) session.getAttribute("username");
 		int replyId = Integer.parseInt(req.getParameter("replyId"));
 		String replyName = req.getParameter("replyName");
 		String replyBody = req.getParameter("replyBody");
@@ -29,8 +30,8 @@ public class Replyre extends HttpServlet {
 		Timestamp timestamp = new Timestamp(date.getTime());
 		Dbutil db = new Dbutil();
 		Message mess = new Message();
-//		UserService userService = new UserService();
-//		userService.repSco(replyName);
+		UserService userService = new UserService();
+		userService.rerepSco(username);
 		mess.rereply(replyId, replyName,replyBody , timestamp);
 		req.getRequestDispatcher("reply.jsp").forward(req, resp);
 	}
